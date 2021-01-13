@@ -31,7 +31,7 @@ let initSlide1 = function(){
     loop: true
   });
 
-  d3.json('data/dummy.json')
+  d3.json('assets/data/dummy.json')
     .then(function(data) {
         d3.select('footer')
             .html('p')
