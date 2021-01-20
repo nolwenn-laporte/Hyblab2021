@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Titouan-GUYADER/Hyblab2021#readme",
   "dependencies": {
+    "csv-parser": "^3.0.0",
+    "fs": "0.0.1-security",
     "sqlite3": "^5.0.1"
   }
 }

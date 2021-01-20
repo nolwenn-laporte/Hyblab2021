@@ -1,5 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
 
+const csv = require('csv-parser');
+const fs = require('fs');
+
 // open database in memory
 let db = new sqlite3.Database('./db/database.db', (err) => {
   if (err) {
@@ -26,28 +29,35 @@ var sql = `CREATE TABLE IF NOT EXISTS Legende (
 
 db.run(sql);
 
-var sql = `INSERT INTO Legende VALUES (
-    'La Baie des Trépassée',
-    'Finistère',
-    'Histoires Maritimes',
-    'Une plage macabre qui effraie les marrins de toute la Bretagne ...',
-    '"En breton on l’appelle Boë an Anao, qui signifie : la « baie des âmes en peine ».
-        On raconte que les corps des marins qui avaient perdu la vie en mer venaient s’y échouer.
-        Durant la nuit de Noël la baie résonne des chants des âmes en peine ballotées sur le bateau des morts.
-        Une autre légende rapporte qu’elle servait de lieu d’embarquement des dépouilles des druides morts vers l’Île de Sein pour leur inhumation."',
-    48.04805556,
-    4.71472222,
-    'Cléden-Cap-Sizun 29770',
-    1,
-    0,
-    1,
-    'https://fr.wikipedia.org/wiki/Baie_des_Tr%C3%A9pass%C3%A9s#/media/Fichier:Baie_des_Tr%C3%A9pass%C3%A9s.jpg')`;
+db.run("DELETE FROM Legende;")
 
-db.all(sql, [], (err, rows) => {
-if (err) {
-throw err;
-}
-rows.forEach((row) => {
-console.log(row);
-});
-});
+fs.createReadStream('data.csv')
+  .pipe(csv())
+  .on('data', (row) => {
+    var sql = `INSERT INTO Legende VALUES (
+        '${(encodeURI(row.nom)).replace(/'/g, "`")}',
+        '${(encodeURI(row.departement)).replace(/'/g, "`")}',
+        '${(encodeURI(row.categorie)).replace(/'/g, "`")}',
+        '${(encodeURI(row.resume)).replace(/'/g, "`")}',
+        '${(encodeURI(row.histoire)).replace(/'/g, "`")}',
+        ${(row.latitude)},
+        ${(row.longitude)},
+        '${(encodeURI(row.adresse)).replace(/'/g, "`")}',
+        ${(row.baignade === 'TRUE' ? 1 : 0)},
+        ${(row.toilettes === 'TRUE' ? 1 : 0)},
+        ${(row.restaurant === 'TRUE' ? 1 : 0)},
+        '${(encodeURI(row.photo)).replace(/'/g, "`")}')`;
+    console.log(sql);
+    
+    db.all(sql, [], (err, rows) => {
+    if (err) {
+    throw err;
+    }
+    rows.forEach((row) => {
+    console.log(row);
+    });
+    });
+  })
+  .on('end', () => {
+    console.log('CSV file successfully processed');
+  });
