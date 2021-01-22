@@ -1,0 +1,24 @@
+{
+  "name": "mer-a",
+  "version": "1.0.0",
+  "description": "Porteur de projet :",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Titouan-GUYADER/Hyblab2021.git"
+  },
+  "author": "Théo DAUDIN, Julien PINCON, Armand BOUTIER, Titouan GUYADER, Nolwenn LAPORTE, ...",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Titouan-GUYADER/Hyblab2021/issues"
+  },
+  "homepage": "https://github.com/Titouan-GUYADER/Hyblab2021#readme",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "fs": "0.0.1-security",
+    "sqlite3": "^5.0.1"
+  }
+}
