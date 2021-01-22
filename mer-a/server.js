@@ -24,7 +24,7 @@ let db = new sqlite3.Database('./db/database.db', (err) => {
         }
         console.log(rows.length);
         rows.forEach((row) => {
-            console.log(row.departement);
+            console.log(decodeURI(row.nom));
         });
     });
 });
@@ -40,7 +40,7 @@ app.use(`/:region/:typeHistoire`, (req, res) => {
             throw err;
         }
         rows.forEach((row) => {
-            console.log(row.nom);
+            console.log(decodeURI(row.nom));
         });
     });
     res.status(200);
@@ -48,12 +48,12 @@ app.use(`/:region/:typeHistoire`, (req, res) => {
 
 
 // close the database connection
-db.close((err) => {
+/*db.close((err) => {
   if (err) {
     return console.error(err.message);
   }
   console.log('Close the database connection.');
-});
+});*/
 
 // Minimum routing: serve static content from the html directory
 app.use(express.static(path.join(__dirname, 'public')));
