@@ -44,6 +44,7 @@ app.use(`/:region/:typeHistoire`, (req, res) => {
         });
     });
     res.status(200);
+    res.send(/*PutObjectHete*/);
 });
 
 
