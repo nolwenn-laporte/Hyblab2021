@@ -5,46 +5,54 @@
 var express = require('express');
 var path = require('path');
 
+var Legende = require('./class/Legende.js')
+
 var app = express();
 
 const sqlite3 = require('sqlite3').verbose();
 
 // open database in memory
-let db = new sqlite3.Database('./db/database.db', (err) => {
+let db = new sqlite3.Database('./mer-a/db/database.db', (err) => {
   if (err) {
     return console.error(err.message);
   }
   console.log('Connected to the in-memory SQlite database.');
-
-  var sql = `SELECT * FROM Legende WHERE departement = 'Morbihan'`;
-
-    db.all(sql, [], (err, rows) => {
-        if (err) {
-            throw err;
-        }
-        console.log(rows.length);
-        rows.forEach((row) => {
-            console.log(decodeURI(row.nom));
-        });
-    });
+  console.log(encodeURI('https://127.0.0.1:8080/mer-a/Morbihan/Créatures Fantastiques'));
 });
 
 app.use(`/:region/:typeHistoire`, (req, res) => {
-    
+    console.log('Coucou');
+    var legendes = [];
     var sql = `SELECT * FROM Legende 
-                WHERE departement = ${req.params.region} 
-                AND categorie = ${req.params.typeHistoire}`;
+                WHERE departement = "${encodeURI(req.params.region)}"
+                AND categorie = "${encodeURI(req.params.typeHistoire)}"`;
 
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
         }
+        
         rows.forEach((row) => {
             console.log(decodeURI(row.nom));
+            var legende = new Legende(
+                row.nom, 
+                row.departement, 
+                row.categorie, 
+                row.resume, 
+                row.histoire, 
+                row.latitude, 
+                row.longitude, 
+                row.adresse,
+                row.baignade, 
+                row.toilettes, 
+                row.restaurant, 
+                row.photo);
+            legendes.push(legende);
         });
+        console.log(legendes);
     });
     res.status(200);
-    res.send(/*PutObjectHete*/);
+    res.send(legendes);
 });
 
 
