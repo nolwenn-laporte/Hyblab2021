@@ -12,7 +12,7 @@ var app = express();
 const sqlite3 = require('sqlite3').verbose();
 const { open } = require('sqlite');
 
-// open database in memory
+// open database
 let db = null;
 (async () => {
   db = await open({filename: './db/database.db', driver: sqlite3.Database});
