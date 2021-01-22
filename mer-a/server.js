@@ -15,7 +15,37 @@ let db = new sqlite3.Database('./db/database.db', (err) => {
     return console.error(err.message);
   }
   console.log('Connected to the in-memory SQlite database.');
+
+  var sql = `SELECT * FROM Legende WHERE departement = 'Morbihan'`;
+
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        console.log(rows.length);
+        rows.forEach((row) => {
+            console.log(row.departement);
+        });
+    });
 });
+
+app.use(`/:region/:typeHistoire`, (req, res) => {
+    
+    var sql = `SELECT * FROM Legende 
+                WHERE departement = ${req.params.region} 
+                AND categorie = ${req.params.typeHistoire}`;
+
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        rows.forEach((row) => {
+            console.log(row.nom);
+        });
+    });
+    res.status(200);
+});
+
 
 // close the database connection
 db.close((err) => {
