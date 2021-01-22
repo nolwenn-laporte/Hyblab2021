@@ -4,7 +4,7 @@ const csv = require('csv-parser');
 const fs = require('fs');
 
 // open database in memory
-let db = new sqlite3.Database('./db/database.db', (err) => {
+let db = new sqlite3.Database('../db/database.db', (err) => {
   if (err) {
     return console.error(err.message);
   }

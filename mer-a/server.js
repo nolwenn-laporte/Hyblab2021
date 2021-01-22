@@ -4,21 +4,25 @@
 // Load usefull expressjs and nodejs objects / modules
 var express = require('express');
 var path = require('path');
+const sqlite3 = require('sqlite3').verbose();
+const { open } = require('sqlite');
 
-var Legende = require('./class/Legende.js')
+const config = require('./server/config.js');
+
+console.log(config);
+
+var Legende = require('./server/classes/Legende.js');
 
 var app = express();
 
-const sqlite3 = require('sqlite3').verbose();
-const { open } = require('sqlite');
 
 // open database
 let db = null;
 (async () => {
-  db = await open({filename: './db/database.db', driver: sqlite3.Database});
+  db = await open({filename: config.DB_PATH, driver: sqlite3.Database});
 })()
 
-app.use(`/api/:region/:typeHistoire`, async (req, res) => {
+app.use(`${config.API_URL}:region/:typeHistoire`, async (req, res) => {
     var legendes = [];
     var sql = `SELECT * FROM Legende 
                 WHERE departement = "${encodeURI(req.params.region)}"
@@ -27,20 +31,19 @@ app.use(`/api/:region/:typeHistoire`, async (req, res) => {
 
     const rows = await db.all(sql, []);  
     rows.forEach((row) => {
-        console.log(decodeURI(row.nom));
         var legende = new Legende(
-            row.nom, 
-            row.departement, 
-            row.categorie, 
-            row.resume, 
-            row.histoire, 
+            decodeURI(row.nom), 
+            decodeURI(row.departement), 
+            decodeURI(row.categorie), 
+            decodeURI(row.resume), 
+            decodeURI(row.histoire), 
             row.latitude, 
             row.longitude, 
-            row.adresse,
-            row.baignade, 
-            row.toilettes, 
-            row.restaurant, 
-            row.photo);
+            decodeURI(row.adresse),
+            (row.baignade === 1 ? true : false), 
+            (row.toilettes === 1 ? true : false), 
+            (row.restaurant === 1 ? true : false), 
+            decodeURI(row.photo));
         legendes.push(legende);
     });
     console.log(legendes);

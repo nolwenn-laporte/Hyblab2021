@@ -1,5 +1,12 @@
 async function getLegendes(region, type, callback) {
-    let legendes = (await (await fetchAsync(API_URL + encodeURI(region) + '/' + encodeURI(type))).json());
+    //Récupération des données
+    let result = (await (await fetchAsync(API_URL + encodeURI(region) + '/' + encodeURI(type))).json());
+    //transformation des données
+    let legendes = new Array();
+    for(l of result.data) {
+        legendes.push(new Legende(l.nom, l.departement, l.categorie, l.resume, l.histoire, l.latitude, l.longitude, l.adresse, l.baignade, l.toilettes, l.restaurant, l.photo))
+    }
+    //Transmission des données
     callback(legendes);
     return legendes;
 }
