@@ -29,12 +29,12 @@ app.get(`${config.API_URL}:region/:typeHistoire`, async (req, res) => {
     // Declaration of the variables
     var legendes = [];
     var sql = `SELECT * FROM Legende 
-                WHERE departement = "${encodeURI(req.params.region)}"
-                AND categorie = "${encodeURI(req.params.typeHistoire)}"`;
-    console.log(sql);
+                WHERE departement = ?
+                AND categorie = ?;`;
+    console.log(sql + `\ndep: "${req.params.region}",\ncat: "${req.params.typeHistoire}"`);
 
     // Get the query result
-    const rows = await db.all(sql, []);
+    const rows = await db.all(sql, [encodeURI(req.params.region), encodeURI(req.params.typeHistoire)]);
     // Process the query result
     rows.forEach((row) => {
         var legende = new Legende(
