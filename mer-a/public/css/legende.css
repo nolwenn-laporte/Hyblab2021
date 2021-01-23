@@ -1,0 +1,74 @@
+h1 {
+	text-align: center;
+	text-decoration: underline;
+}
+
+h2 {
+	text-align: center;
+}
+
+nav.btn-group {
+	margin-left: 2.5%;
+}
+
+div#content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 0px 0px;
+}
+
+div#information {
+	margin-right: 20%;
+	margin-left: 10%;
+	border: solid;
+	border-radius: 5%;
+	padding: 5%;
+}
+
+div#information h4 {
+	text-align: center;
+	font-weight: bold;
+}
+
+.logo {
+	width: 40px;
+	height: 40px;
+}
+
+.logo:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+#logo_localisation {
+	width: 20px;
+	height: 20px;
+}
+
+.info-span {
+	text-decoration: underline;
+	font-weight: bold;
+	margin-right: 5%;
+}
+
+div#services {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-around;
+}
+
+#localisation {
+	text-align: center;
+}
+
+#localisation:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+#photo {
+	padding: 5%;
+	width: 100%;
+	height: auto;
+}
