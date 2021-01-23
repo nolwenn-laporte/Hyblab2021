@@ -1,0 +1,21 @@
+.wave{
+ -webkit-animation: wave 5s 0.1s infinite linear;
+  -moz-animation: wave 5s 0.1s infinite linear;
+  animation: wave 50s 0.1s infinite linear;
+}
+
+@-webkit-keyframes wave {
+  0% {
+    -webkit-transform:  translate3d(0,0%,0) ;
+    -moz-transform:  translate3d(0,1%,0) ;
+    transform:  translate3d(0,1%,0) ; }
+  50% {
+    -webkit-transform:  translate3d(0,1%,0) ;
+    -moz-transform:  translate3d(0,1%,0) ;
+    transform:  translate3d(0,5%,0) ; }
+  100% {
+    -webkit-transform:  translate3d(0,1%,0) ;
+    -moz-transform:  translate3d(0,1%,0) ;
+    transform:  translate3d(0,0%,0) ; 
+    } 
+}
