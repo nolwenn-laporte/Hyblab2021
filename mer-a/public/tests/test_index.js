@@ -9,7 +9,7 @@ legendesMorbihanFantastique.then((s) => {
     //On récupère le conteneur de test
     let box = document.querySelector('#testBox');
     //On ajoute le contenu
-    for(l of s) {
+    for(let l of s) {
         box.innerHTML += `Legende ${l.nom} :\n${l.histoire}\n`;
     }
 }, (r) => console.log(r)); //Ici, fonction en cas d'erreur
