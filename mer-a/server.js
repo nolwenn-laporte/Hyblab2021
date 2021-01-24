@@ -58,7 +58,6 @@ app.get(`${config.API_URL}:region/:typeHistoire`, async (req, res) => {
     res.json({data:legendes});
 });
 
-
 // close the database connection
 /*db.close((err) => {
   if (err) {
