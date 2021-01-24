@@ -29,8 +29,8 @@ app.get(`${config.API_URL}:region/:typeHistoire`, async (req, res) => {
     // Declaration of the variables
     var legendes = [];
     var sql = `SELECT * FROM Legende 
-                WHERE departement = "${encodeURI(req.params.region)}"
-                AND categorie = "${encodeURI(req.params.typeHistoire)}"`;
+                WHERE departementId = ${encodeURI(req.params.region)}
+                AND categorieId = ${encodeURI(req.params.typeHistoire)}`;
     console.log(sql);
 
     // Get the query result
@@ -39,8 +39,8 @@ app.get(`${config.API_URL}:region/:typeHistoire`, async (req, res) => {
     rows.forEach((row) => {
         var legende = new Legende(
             decodeURI(row.nom), 
-            decodeURI(row.departement), 
-            decodeURI(row.categorie), 
+            decodeURI(row.departement), //A modifier
+            decodeURI(row.categorie),   //A modifier
             decodeURI(row.resume), 
             decodeURI(row.histoire), 
             row.latitude, 
