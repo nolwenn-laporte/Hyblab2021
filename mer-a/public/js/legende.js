@@ -30,8 +30,9 @@
 	initLogo('food', 'restaurant', data.restaurant);
 
 	function initLogo(id, alt, boolean) {
-		document.querySelector(`#${id}`).alt = (boolean) ? alt : `pas de ${alt}`;
-		document.querySelector(`#${id}`).src = (boolean) ? `../assets/img/logo_${id}.png` : `../assets/img/logo_${id}_crossed.png`;
-
+		const logo = document.querySelector(`#${id}`);
+		logo.alt = (boolean) ? alt : `pas de ${alt}`;
+		logo.src = (boolean) ? `../assets/img/logo/logo_${id}.png` : `../assets/img/logo/logo_${id}_crossed.png`;
+		logo.title = (boolean) ? alt : `pas de ${alt}`;
 	}
 })();
