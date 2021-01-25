@@ -11,6 +11,22 @@ async function getLegendes(region, type, callback) {
     return legendes;
 }
 
+async function getRegionsId(region, type, callback) {
+    //Récupération des données
+    let result = (await (await fetchAsync(API_URL + API_REGIONS_ID, 'GET')).json());
+    //Transmission des données
+    callback(result);
+    return result;
+}
+
+async function getTypesId(region, type, callback) {
+    //Récupération des données
+    let result = (await (await fetchAsync(API_URL + API_TYPES_ID, 'GET')).json());
+    //Transmission des données
+    callback(result);
+    return result;
+}
+
 //Déclaration de la fonction permettant de récupérer le résultat d'une URL
 async function fetchAsync(url, method) {
     let options = null;

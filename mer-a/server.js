@@ -24,23 +24,38 @@ let db = null;
   db = await open({filename: config.DB_PATH, driver: sqlite3.Database});
 })();
 
+
+app.get(`${config.API_URL}all/regions`, async (req, res) => {
+  let sql = 'SELECT * FROM DEPARTEMENT;'
+  const rows = await db.all(sql, []);
+  console.log(rows);
+  res.status(200).json(rows);
+});
+
+app.get(`${config.API_URL}all/types`, async (req, res) => {
+  let sql = 'SELECT * FROM CATEGORIE;'
+  const rows = await db.all(sql, []);
+  console.log(rows);
+  res.status(200).json(rows);
+});
+
 // Add route to get the legends
 app.get(`${config.API_URL}:region/:typeHistoire`, async (req, res) => {
     // Declaration of the variables
     var legendes = [];
-    var sql = `SELECT * FROM Legende 
-                WHERE departement = "${encodeURI(req.params.region)}"
-                AND categorie = "${encodeURI(req.params.typeHistoire)}"`;
-    console.log(sql);
+    var sql = `SELECT * FROM Legende INNER JOIN Departement ON Departement.id = departementId
+                INNER JOIN Categorie ON Categorie.id = categorieId WHERE departementId = ?
+                AND categorieId = ?;`;
+    console.log(sql + `\ndep: "${req.params.region}",\ncat: "${req.params.typeHistoire}"`);
 
     // Get the query result
-    const rows = await db.all(sql, []);
+    const rows = await db.all(sql, [encodeURI(req.params.region), encodeURI(req.params.typeHistoire)]);
     // Process the query result
     rows.forEach((row) => {
         var legende = new Legende(
             decodeURI(row.nom), 
-            decodeURI(row.departement), 
-            decodeURI(row.categorie), 
+            decodeURI(row.nomDepartement), //A modifier
+            decodeURI(row.nomCategorie),   //A modifier
             decodeURI(row.resume), 
             decodeURI(row.histoire), 
             row.latitude, 

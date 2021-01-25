@@ -1,6 +1,6 @@
 let legendes = null;
 //On récupère la promesse dans 'legendesMorbihanFantastique' et on donne une fonction de callback qui va initialiser 'legendes'
-let legendesMorbihanFantastique = getLegendes('Morbihan', 'Créatures Fantastiques', (r) => legendes = r);
+let legendesMorbihanFantastique = getLegendes(3, 2, (r) => legendes = r);
 //Quand la promesse est finie
 legendesMorbihanFantastique.then((s) => {
     //On affiche le contenu de légende et du résultat reçu via 'then'
