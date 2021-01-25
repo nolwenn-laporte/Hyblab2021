@@ -14,33 +14,39 @@
   		<h1>Média Sea</h1>
       <h2 id="nom"></h2>
 
-    	<nav class="btn-group" role="groupe" aria-label="Basic example">
-    		<button type="button" class="btn btn-secondary" id="department"></button>
-    		<button type="button" class="btn btn-secondary" id="categorie"></button>
-    		<button type="button" class="btn btn-secondary">Carte</button>
-    	</nav>	
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" id="department"></a></li>
+          <li class="breadcrumb-item"><a href="#" id="categorie"></a></li>
+          <li class="breadcrumb-item"><a href="#">Carte</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Légende</li>
+        </ol>
+      </nav>
+      
   	</header>
     <div id="content">
       <div id="personnage">
         <img alt="humain" src="../assets/img/personnage/humain.png" title="humain">
       </div>
-      <div id="texte"></div>
+      <div id="texte">
+        <div id="bubble"></div>
+      </div>
       <div id="information">
         <div>
-        <h4>Information du lieu :</h4>
-        <p><span class="info-span">Adresse :</span><span id="adresse"></span></p>
-        <p><span class="info-span">Services :</span></p>
-        <div id="services">
-          <img id="swim" class="logo" alt="baignade">
-          <img id="food" class="logo" alt="nourriture">
-          <img id="wc" class="logo" alt="toilettes">
+          <h4>Information du lieu :</h4>
+          <p><span class="info-span">Adresse :</span><span id="adresse"></span></p>
+          <p><span class="info-span">Services :</span></p>
+          <div id="services">
+            <img id="swim" class="logo" alt="baignade">
+            <img id="food" class="logo" alt="nourriture">
+            <img id="wc" class="logo" alt="toilettes">
+          </div>
+          <img id="photo" alt="image lieux">
+          <div id="localisation">
+            <img id="logo_localisation" class="logo" src="../assets/img/logo/logo_localisation.png" alt="localisation">
+            <span id="googlemaps">Voir sur google maps</span>
+          </div>
         </div>
-        <img id="photo" alt="image lieux">
-        <div id="localisation">
-          <img id="logo_localisation" class="logo" src="../assets/img/logo/logo_localisation.png" alt="localisation">
-          <span id="googlemaps">Voir sur google maps</span>
-        </div>
-      </div>
       </div>
     </div>
 

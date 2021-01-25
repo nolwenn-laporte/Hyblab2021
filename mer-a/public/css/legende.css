@@ -36,11 +36,30 @@ div#personnage img {
 }
 
 /*
+	=========
+	= Texte =
+	=========
+*/
+
+div#bubble {
+	height: 70%;
+	width: 80%;
+	background: lightblue;
+	display: block;
+	border-radius: 20px;
+	margin-top: 20%;
+	text-align: center;
+	padding: 2.5%;
+	max-height: 50%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/*
 	===============
 	= Information =
 	===============
 */
-
 
 div#information {
 	margin-right: 20%;
