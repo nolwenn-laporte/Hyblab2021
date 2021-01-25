@@ -12,15 +12,61 @@ nav.btn-group {
 }
 
 div#content {
-  height: 100%;
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 30% 35% 35%;
   gap: 0px 0px;
 }
 
+
+/*
+	==============
+	= Personnage =
+	==============
+*/
+
+div#personnage {
+	margin-top: 15%;
+}
+
+div#personnage img {
+	display: block;
+	margin: 0 auto;
+	width: auto;
+	height: 80%;
+}
+
+/*
+	=========
+	= Texte =
+	=========
+*/
+
+div#bubble {
+	height: 70%;
+	width: 80%;
+	background: lightblue;
+	display: block;
+	border-radius: 20px;
+	margin-top: 20%;
+	text-align: center;
+	padding: 2.5%;
+	max-height: 50%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/*
+	===============
+	= Information =
+	===============
+*/
+
 div#information {
 	margin-right: 20%;
-	margin-left: 10%;
+	margin-top: 15%;
+}
+
+div#information > div {
 	border: solid;
 	border-radius: 5%;
 	padding: 5%;
@@ -38,7 +84,6 @@ div#information h4 {
 
 .logo:hover {
 	opacity: 0.8;
-	cursor: pointer;
 }
 
 #logo_localisation {

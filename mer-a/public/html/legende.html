@@ -6,34 +6,46 @@
     <title>Média  Sea</title>
     <link rel="stylesheet" href="../css/legende.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="../js/legende.js" defer></script>
   </head>
   <body>
   	<header>
      <!-- <img src="" alt="logo"> -->
   		<h1>Média Sea</h1>
-      <h2>La légende de la ville d'Ys</h2>
+      <h2 id="nom"></h2>
 
-    	<nav class="btn-group" role="groupe" aria-label="Basic example">
-    		<button type="button" class="btn btn-secondary">Finistère</button>
-    		<button type="button" class="btn btn-secondary">Créatures</button>
-    		<button type="button" class="btn btn-secondary">Carte</button>
-    	</nav>	
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" id="department"></a></li>
+          <li class="breadcrumb-item"><a href="#" id="categorie"></a></li>
+          <li class="breadcrumb-item"><a href="#">Carte</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Légende</li>
+        </ol>
+      </nav>
+      
   	</header>
     <div id="content">
-      <div></div>
+      <div id="personnage">
+        <img alt="humain" src="../assets/img/personnage/humain.png" title="humain">
+      </div>
+      <div id="texte">
+        <div id="bubble"></div>
+      </div>
       <div id="information">
-        <h4>Information du lieu :</h4>
-        <p><span class="info-span">Adresse :</span><span id="adresse">Douarnenez 29100</span></p>
-        <p><span class="info-span">Services :</span></p>
-        <div id="services">
-          <img id="swim" class="logo" src="../assets/img/logo_swim.png" alt="baignade">
-          <img id="food" class="logo" src="../assets/img/logo_food.png" alt="nourriture">
-          <img id="wc" class="logo" src="../assets/img/logo_wc.jpg" alt="toilettes">
-        </div>
-        <img id="photo" src="../assets/img/douarnenez.jpg" alt="douarnenez">
-        <div id="localisation">
-          <img id="logo_localisation" class="logo" src="../assets/img/logo_localisation.png" alt="localisation">
-          <span>Voir sur google maps</span>
+        <div>
+          <h4>Information du lieu :</h4>
+          <p><span class="info-span">Adresse :</span><span id="adresse"></span></p>
+          <p><span class="info-span">Services :</span></p>
+          <div id="services">
+            <img id="swim" class="logo" alt="baignade">
+            <img id="food" class="logo" alt="nourriture">
+            <img id="wc" class="logo" alt="toilettes">
+          </div>
+          <img id="photo" alt="image lieux">
+          <div id="localisation">
+            <img id="logo_localisation" class="logo" src="../assets/img/logo/logo_localisation.png" alt="localisation">
+            <span id="googlemaps">Voir sur google maps</span>
+          </div>
         </div>
       </div>
     </div>
